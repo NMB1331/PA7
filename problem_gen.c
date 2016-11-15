@@ -107,6 +107,9 @@ void generate_level_one_problem(char *problem)
   printf("%s", problem);
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////PROBLEM SOLVING FUNCTIONS
+
 //Function that reverses a string
 void reverse(char *str)
 {
@@ -206,29 +209,38 @@ double solve_problem(char *problem)
   char new_lhs[50] = { '\0' };
   char new_rhs[50] = { '\0' };
 
-  last_operator = findLastOccurence(problem, "*/+-");
-  if(!char_compare(last_operator, '+') || !char_compare(last_operator, '+') || !char_compare(last_operator, '*') || !char_compare(last_operator, '/'))
+  last_operator = findLastOccurence(problem, "+-");
+
+  if(!char_compare(last_operator, '+') || !char_compare(last_operator, '-'))
   {
     if (!char_compare(last_operator, '+'))
     {
       my_strtok(problem, '+', new_lhs, new_rhs);
       return solve_problem(new_lhs) + solve_problem(new_rhs);
     }
-    else if (!char_compare(last_operator, '-'))
+    if (!char_compare(last_operator, '-'))
     {
       my_strtok(problem, '-', new_lhs, new_rhs);
       return solve_problem(new_lhs) - solve_problem(new_rhs);
     }
-    else if (!char_compare(last_operator, '*'))
+
+  }
+
+  last_operator = findLastOccurence(problem, "*/");
+
+  if(!char_compare(last_operator, '*') || !char_compare(last_operator, '/'))
+  {
+    if (!char_compare(last_operator, '*'))
     {
       my_strtok(problem, '*', new_lhs, new_rhs);
       return solve_problem(new_lhs) * solve_problem(new_rhs);
     }
-    else if (!char_compare(last_operator, '/'))
+    if (!char_compare(last_operator, '/'))
     {
       my_strtok(problem, '/', new_lhs, new_rhs);
       return solve_problem(new_lhs) / solve_problem(new_rhs);
     }
+
   }
   return atoi(problem);
 }
