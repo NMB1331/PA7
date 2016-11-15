@@ -1,13 +1,15 @@
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
-#include "math.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
 
 #define LEVEL_ONE 1
 #define LEVEL_TWO 2
 #define LEVEL_THREE 3
 #define LEVEL_FOUR 4
 #define LEVEL_FIVE 5
+#define PROBLEM_SIZE 10
 
 //////////////////////////////GAME SETUP FUNCTIONS//////////////////////////////////////////////////////////////////////
 
@@ -47,4 +49,29 @@ void print_rules(void);
 *************************************************************/
 void get_initials(char *initials);
 
+/*************************************************************
+* Function: get_level                                       *
+* Date Created: 11/13/2016                                  *
+* Date Last Modified: 11/13/2016                            *
+* Description: Lets the user select a difficulty level      *
+* Input parameters: None                                    *
+* Returns: Integer 1-5 (level choice)                       *
+* Preconditions: None                                       *
+* Postconditions: None                                      *
+*************************************************************/
+int get_level(void);
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////PROBLEM GENERATION FUNCTIONS
+
+/*************************************************************
+* Function: generate_operator                               *
+* Date Created: 11/13/2016                                  *
+* Date Last Modified: 11/13/2016                            *
+* Description: Generates a mathematical operator            *
+* Input parameters: None                                    *
+* Returns: Characters +, -, *, /                            *
+* Preconditions: None                                       *
+* Postconditions: None                                      *
+*************************************************************/
+char generate_operator(int level);
