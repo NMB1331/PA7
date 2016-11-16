@@ -3,7 +3,7 @@
 ///////////////////////////////GAME SETUP FUNCTIONS////////////////////////////////////////////////////////////////
 
 //Function that lets the user decide what to do (choose level, get instructions, etc.)
-int user_interface(char *initials)
+int welcome_screen(char *initials)
 {
   //Determines whether or not to print the rules, or play the game
   int initial_choice = 0;
@@ -67,44 +67,180 @@ int get_level(void)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////PROBLEM GENERATION FUNCTIONS
 
-//Function that generates mathematical operators
-char generate_operator(int level)
+//Function that resets PROBLEM
+void reset_problem(char *problem)
 {
-  if (level == 1)
+  for (int i=0; i<PROBLEM_SIZE; i++)
   {
-    int x = rand() % 2 + 1;
-    if (x == 1)
-    {
-      return '+';
-    }
-    else if (x == 2)
-    {
-      return '-';
-    }
+    problem[i] = '\0';
   }
+}
+
+//Function that generates mathematical operators
+char generate_basic_operator(void)
+{
+
+  int x = rand() % 2 + 1;
+  if (x == 1)
+  {
+    return '+';
+  }
+  else if (x == 2)
+  {
+    return '-';
+  }
+
 
 return 'x';
 }
 
-int generate_number(int level)
+//Function that generates a random number for problems (higher numbers for harder problems)
+int generate_number(void)
 {
-  if (level == 1)
-  {
-    int num = rand() % 8 + 49;
-    printf("Num: %d\n", num);
-    return num;
-  }
-
-  return 0;
+  int num = rand() % 8 + 49;
+  return num;
 }
 
 //Function that generates a problem for level one
-void generate_level_one_problem(char *problem)
+void generate_level_one_problem(char *problem, int difficulty)
 {
-  problem[0] = generate_number(LEVEL_ONE);
-  problem[1] = generate_operator(LEVEL_ONE);
-  problem[2] = generate_number(LEVEL_ONE);
-  printf("%s", problem);
+  if (difficulty == EASY)
+  {
+    problem[0] = generate_number();
+    problem[1] = generate_basic_operator();
+    problem[2] = generate_number();
+    printf("%s\n", problem);
+  }
+  else if (difficulty == MEDIUM)
+  {
+    problem[0] = generate_number();
+    problem[1] = generate_basic_operator();
+    problem[2] = generate_number();
+    problem[3] = generate_basic_operator();
+    problem[4] = generate_number();
+    printf("%s\n", problem);
+  }
+  else if (difficulty == HARD)
+  {
+    problem[0] = generate_number();
+    problem[1] = generate_basic_operator();
+    problem[2] = generate_number();
+    problem[3] = generate_basic_operator();
+    problem[4] = generate_number();
+    problem[5] = generate_basic_operator();
+    problem[6] = generate_number();
+    printf("%s\n", problem);
+  }
+  else
+  {
+    printf("Error generating problem 1\n");
+  }
+
+}
+
+//Function that lets the player play level occurence
+void play_level_one(char *problem, int number_correct[10], int number_incorrect[10])
+{
+  int number_of_problems = 1;
+  double correct_answer = 0.0, user_answer = 0.0;
+  while (number_of_problems <= 10)
+  {
+    //Generates easy problems
+    if (number_correct[1] <= 3)
+    {
+      //Creates and displays the problem
+      printf("Difficulty: EASY\n");
+      printf("Problem %d: ", number_of_problems);
+      generate_level_one_problem(problem, EASY);
+      correct_answer = solve_problem(problem);
+
+      printf("Enter your answer: ");
+      scanf("%lf", &user_answer);
+
+      //Checks answer; updates scoring
+      if (user_answer == correct_answer)
+      {
+        printf("Nice! You got it!\n");
+        number_correct[LEVEL_ONE] += 1;
+        number_of_problems += 1;
+      }
+      else if (user_answer != correct_answer)
+      {
+        printf("Sorry! The answer was %lf...\n", correct_answer);
+        number_incorrect[LEVEL_ONE] += 1;
+        number_of_problems += 1;
+      }
+      else
+      {
+        printf("ERROR SCORING PROBLEM\n");
+        number_of_problems += 1;
+      }
+
+    }
+
+    else if (number_correct[1] <= 7)
+    {
+      //Creates and displays the problem
+      printf("Difficulty: MEDIUM\n");
+      printf("Problem %d: ", number_of_problems);
+      generate_level_one_problem(problem, MEDIUM);
+      correct_answer = solve_problem(problem);
+      printf("Enter your answer: ");
+      scanf("%lf", &user_answer);
+
+      //Checks answer; updates scoring
+      if (user_answer == correct_answer)
+      {
+        printf("Nice! You got it!\n");
+        number_correct[LEVEL_ONE] += 1;
+        number_of_problems += 1;
+      }
+      else if (user_answer != correct_answer)
+      {
+        printf("Sorry! The answer was %lf...\n", correct_answer);
+        number_incorrect[LEVEL_ONE] += 1;
+        number_of_problems += 1;
+      }
+      else
+      {
+        printf("ERROR SCORING PROBLEM\n");
+        number_of_problems += 1;
+      }
+
+    }
+
+    else if (number_correct[1] <= 10)
+    {
+      //Creates and displays the problem
+      printf("Difficulty: HARD");
+      printf("Problem %d: ", number_of_problems);
+      generate_level_one_problem(problem, HARD);
+      correct_answer = solve_problem(problem);
+      printf("Enter your answer: ");
+      scanf("%lf", &user_answer);
+
+      //Checks answer; updates scoring
+      if (user_answer == correct_answer)
+      {
+        printf("Nice! You got it!\n");
+        number_correct[LEVEL_ONE] += 1;
+        number_of_problems += 1;
+      }
+      else if (user_answer != correct_answer)
+      {
+        printf("Sorry! The answer was %lf...\n", correct_answer);
+        number_incorrect[LEVEL_ONE] += 1;
+        number_of_problems += 1;
+      }
+      else
+      {
+        printf("ERROR SCORING PROBLEM\n");
+        number_of_problems += 1;
+      }
+
+    }
+
+}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -171,7 +307,7 @@ void my_strtok(char *problem, char op, char *new_lhs, char *new_rhs)
 }
 
 //Function that finds the last occurence of a character (operator)
-char findLastOccurence(char *problem, char *ops)
+char find_last_occurence(char *problem, char *ops)
 {
   char last_occurence = '\0';
   int problem_size = strlen(problem);
@@ -209,7 +345,7 @@ double solve_problem(char *problem)
   char new_lhs[50] = { '\0' };
   char new_rhs[50] = { '\0' };
 
-  last_operator = findLastOccurence(problem, "+-");
+  last_operator = find_last_occurence(problem, "+-");
 
   if(!char_compare(last_operator, '+') || !char_compare(last_operator, '-'))
   {
@@ -226,7 +362,7 @@ double solve_problem(char *problem)
 
   }
 
-  last_operator = findLastOccurence(problem, "*/");
+  last_operator = find_last_occurence(problem, "*/");
 
   if(!char_compare(last_operator, '*') || !char_compare(last_operator, '/'))
   {
