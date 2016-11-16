@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
+#include <curses.h>
 
 #define LEVEL_ONE 1
 #define LEVEL_TWO 2
@@ -64,6 +65,18 @@ void get_initials(char *initials);
 *************************************************************/
 int get_level(void);
 
+/*************************************************************
+* Function: play_next_level                                 *
+* Date Created: 11/15/2016                                  *
+* Date Last Modified: 11/15/2016                            *
+* Description: Asks the user if they wish to continue       *
+* Input parameters: Pointer to int level choice             *
+* Returns: None                                             *
+* Preconditions: None                                       *
+* Postconditions: None                                      *
+*************************************************************/
+void play_next_level(int *level_choice);
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////PROBLEM GENERATION FUNCTIONS
 
@@ -116,6 +129,54 @@ int generate_number(void);
 void generate_level_one_problem(char *problem, int difficulty);
 
 /*************************************************************
+* Function: generate_level_two_problem                      *
+* Date Created: 11/15/2016                                  *
+* Date Last Modified: 11/15/2016                            *
+* Description: Generates a problem for level 2              *
+* Input parameters: String problem                          *
+* Returns: None                                             *
+* Preconditions: None                                       *
+* Postconditions: None                                      *
+*************************************************************/
+void generate_level_two_problem(char *problem);
+
+/*************************************************************
+* Function: generate_level_three_problem                     *
+* Date Created: 11/15/2016                                  *
+* Date Last Modified: 11/15/2016                            *
+* Description: Generates a problem for level 3              *
+* Input parameters: String problem                          *
+* Returns: None                                             *
+* Preconditions: None                                       *
+* Postconditions: None                                      *
+*************************************************************/
+void generate_level_three_problem(char *problem);
+
+/*************************************************************
+* Function: generate_level_four_problem                     *
+* Date Created: 11/15/2016                                  *
+* Date Last Modified: 11/15/2016                            *
+* Description: Generates a problem for level 3              *
+* Input parameters: String problem                          *
+* Returns: None                                             *
+* Preconditions: None                                       *
+* Postconditions: None                                      *
+*************************************************************/
+void generate_level_four_problem(char *problem);
+
+/*************************************************************
+* Function: generate_level_five_problem                     *
+* Date Created: 11/15/2016                                  *
+* Date Last Modified: 11/15/2016                            *
+* Description: Generates an easy, med, or hard lvl 5 problem*
+* Input parameters: String problem, int difficulty          *
+* Returns: None                                             *
+* Preconditions: None                                       *
+* Postconditions: None                                      *
+*************************************************************/
+void generate_level_five_problem(char *problem, int difficulty);
+
+/*************************************************************
 * Function: play_level_one                                  *
 * Date Created: 11/15/2016                                  *
 * Date Last Modified: 11/15/2016                            *
@@ -125,10 +186,46 @@ void generate_level_one_problem(char *problem, int difficulty);
 * Preconditions: None                                       *
 * Postconditions: None                                      *
 *************************************************************/
-void play_level_one(char *problem, int number_correct[6], int number_incorrect[6]);
+void play_level_one(char *problem, int number_correct[6], int number_incorrect[6], int *level_choice);
+
+/*************************************************************
+* Function: play_level_two                                  *
+* Date Created: 11/15/2016                                  *
+* Date Last Modified: 11/15/2016                            *
+* Description: Plays and scores level two                   *
+* Input parameters: String problem, number_correct[6], int number_incorrect[6]
+* Returns: None                                             *
+* Preconditions: None                                       *
+* Postconditions: None                                      *
+*************************************************************/
+void play_level_two(char *problem, int number_correct[6], int number_incorrect[6], int *level_choice);
+
+/*************************************************************
+* Function: play_level_three                                *
+* Date Created: 11/15/2016                                  *
+* Date Last Modified: 11/15/2016                            *
+* Description: Plays and scores level three                 *
+* Input parameters: String problem, number_correct[6], int number_incorrect[6]
+* Returns: None                                             *
+* Preconditions: None                                       *
+* Postconditions: None                                      *
+*************************************************************/
+void play_level_three(char *problem, int number_correct[6], int number_incorrect[6], int *level_choice);
+
+/*************************************************************
+* Function: play_level_four                                 *
+* Date Created: 11/15/2016                                  *
+* Date Last Modified: 11/15/2016                            *
+* Description: Plays and scores level four                  *
+* Input parameters: String problem, number_correct[6], int number_incorrect[6]
+* Returns: None                                             *
+* Preconditions: None                                       *
+* Postconditions: None                                      *
+*************************************************************/
+void play_level_four(char *problem, int number_correct[6], int number_incorrect[6], int *level_choice);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////PROBLEM SOLVING FUNCTIONS
+//////////////////////////////////////////////PROBLEM SOLVING/STATS FUNCTIONS
 
 /*************************************************************
 * Function: reverse                                         *
@@ -189,3 +286,15 @@ int char_compare(char c1, char c2);
 * Postconditions: None                                      *
 *************************************************************/
 double solve_problem(char *problem);
+
+/*************************************************************
+* Function: calculate_and_display_stats                     *
+* Date Created: 11/15/2016                                  *
+* Date Last Modified: 11/15/2016                            *
+* Description: Calculates and prints game stats             *
+* Input parameters: File outfile, number_correct, number incorrect
+* Returns: None                                             *
+* Preconditions: None                                       *
+* Postconditions: None                                      *
+*************************************************************/
+void calculate_and_display_stats(int number_correct[6], int number_incorrect[6], FILE *outfile);
