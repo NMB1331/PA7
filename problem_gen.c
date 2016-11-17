@@ -260,7 +260,7 @@ void generate_level_five_problem(char *problem, int difficulty)
 void play_level_one(char *problem, int number_correct[10], int number_incorrect[10], int *level_choice)
 {
   int number_of_problems = 1;
-  double correct_answer = 0.0, user_answer = 0.0;
+  int correct_answer = 0.0, user_answer = 0.0;
   while (number_of_problems <= 10)
   {
     //Generates easy problems
@@ -273,7 +273,7 @@ void play_level_one(char *problem, int number_correct[10], int number_incorrect[
       correct_answer = solve_problem(problem);
 
       printf("Enter your answer: ");
-      scanf("%lf", &user_answer);
+      scanf("%d", &user_answer);
 
       //Checks answer; updates scoring
       if (user_answer == correct_answer)
@@ -286,7 +286,7 @@ void play_level_one(char *problem, int number_correct[10], int number_incorrect[
       }
       else if (user_answer != correct_answer)
       {
-        printf("Sorry! The answer was %.3lf...\n", correct_answer);
+        printf("Sorry! The answer was %d...\n", correct_answer);
         number_incorrect[LEVEL_ONE] += 1;
         number_of_problems += 1;
         system( "read -n 1 -s -p \"Press any key to continue...\"" );
@@ -308,7 +308,7 @@ void play_level_one(char *problem, int number_correct[10], int number_incorrect[
       generate_level_one_problem(problem, MEDIUM);
       correct_answer = solve_problem(problem);
       printf("Enter your answer: ");
-      scanf("%lf", &user_answer);
+      scanf("%d", &user_answer);
 
       //Checks answer; updates scoring
       if (user_answer == correct_answer)
@@ -321,7 +321,7 @@ void play_level_one(char *problem, int number_correct[10], int number_incorrect[
       }
       else if (user_answer != correct_answer)
       {
-        printf("Sorry! The answer was %.3lf...\n", correct_answer);
+        printf("Sorry! The answer was %d...\n", correct_answer);
         number_incorrect[LEVEL_ONE] += 1;
         number_of_problems += 1;
         system( "read -n 1 -s -p \"Press any key to continue...\"" );
@@ -343,7 +343,7 @@ void play_level_one(char *problem, int number_correct[10], int number_incorrect[
       generate_level_one_problem(problem, HARD);
       correct_answer = solve_problem(problem);
       printf("Enter your answer: ");
-      scanf("%lf", &user_answer);
+      scanf("%d", &user_answer);
 
       //Checks answer; updates scoring
       if (user_answer == correct_answer)
@@ -356,7 +356,7 @@ void play_level_one(char *problem, int number_correct[10], int number_incorrect[
       }
       else if (user_answer != correct_answer)
       {
-        printf("Sorry! The answer was %.3lf...\n", correct_answer);
+        printf("Sorry! The answer was %d...\n", correct_answer);
         number_incorrect[LEVEL_ONE] += 1;
         number_of_problems += 1;
         system( "read -n 1 -s -p \"Press any key to continue...\"" );
@@ -378,7 +378,7 @@ void play_level_one(char *problem, int number_correct[10], int number_incorrect[
 void play_level_two(char *problem, int number_correct[6], int number_incorrect[6], int *level_choice)
 {
   int number_of_problems = 1;
-  double user_answer = 0, correct_answer = 0;
+  int user_answer = 0, correct_answer = 0;
 
   while (number_of_problems <= 10)
   {
@@ -386,7 +386,7 @@ void play_level_two(char *problem, int number_correct[6], int number_incorrect[6
     generate_level_two_problem(problem);
     correct_answer = solve_problem(problem);
     printf("Enter your answer: ");
-    scanf("%lf", &user_answer);
+    scanf("%d", &user_answer);
 
     if (user_answer == correct_answer)
     {
@@ -399,7 +399,7 @@ void play_level_two(char *problem, int number_correct[6], int number_incorrect[6
 
     else if (user_answer != correct_answer)
     {
-      printf("Sorry, the answer was %.3lf\n", correct_answer);
+      printf("Sorry, the answer was %d\n", correct_answer);
       number_incorrect[LEVEL_TWO] += 1;
       number_of_problems += 1;
       system( "read -n 1 -s -p \"Press any key to continue...\"" );
@@ -418,7 +418,7 @@ void play_level_two(char *problem, int number_correct[6], int number_incorrect[6
 void play_level_three(char *problem, int number_correct[6], int number_incorrect[6], int *level_choice)
 {
   int number_of_problems = 1;
-  double user_answer = 0, correct_answer = 0;
+  int user_answer = 0, correct_answer = 0;
 
   while (number_of_problems <= 10)
   {
@@ -426,7 +426,7 @@ void play_level_three(char *problem, int number_correct[6], int number_incorrect
     generate_level_three_problem(problem);
     correct_answer = solve_problem(problem);
     printf("Enter your answer: ");
-    scanf("%lf", &user_answer);
+    scanf("%d", &user_answer);
 
     if (user_answer == correct_answer)
     {
@@ -439,7 +439,7 @@ void play_level_three(char *problem, int number_correct[6], int number_incorrect
 
     else if (user_answer != correct_answer)
     {
-      printf("Sorry, the answer was %.3lf\n", correct_answer);
+      printf("Sorry, the answer was %d\n", correct_answer);
       number_incorrect[LEVEL_THREE] += 1;
       number_of_problems += 1;
       system( "read -n 1 -s -p \"Press any key to continue...\"" );
@@ -457,7 +457,7 @@ void play_level_three(char *problem, int number_correct[6], int number_incorrect
 void play_level_four(char *problem, int number_correct[6], int number_incorrect[6], int *level_choice)
 {
   int number_of_problems = 1;
-  double user_answer = 0, correct_answer = 0;
+  int user_answer = 0, correct_answer = 0;
 
   while (number_of_problems <= 10)
   {
@@ -465,7 +465,7 @@ void play_level_four(char *problem, int number_correct[6], int number_incorrect[
     generate_level_four_problem(problem);
     correct_answer = solve_problem(problem);
     printf("Enter your answer: ");
-    scanf("%lf", &user_answer);
+    scanf("%d", &user_answer);
 
     if (user_answer == correct_answer)
     {
@@ -478,7 +478,7 @@ void play_level_four(char *problem, int number_correct[6], int number_incorrect[
 
     else if (user_answer != correct_answer)
     {
-      printf("Sorry, the answer was %.3lf\n", correct_answer);
+      printf("Sorry, the answer was %d\n", correct_answer);
       number_incorrect[LEVEL_FOUR] += 1;
       number_of_problems += 1;
       system( "read -n 1 -s -p \"Press any key to continue...\"" );
@@ -497,7 +497,7 @@ void play_level_four(char *problem, int number_correct[6], int number_incorrect[
 void play_level_five(char *problem, int number_correct[10], int number_incorrect[10], int *level_choice)
 {
   int number_of_problems = 1;
-  double correct_answer = 0.0, user_answer = 0.0;
+  int correct_answer = 0, user_answer = 0;
   while (number_of_problems <= 10)
   {
     //Generates easy problems
@@ -510,7 +510,7 @@ void play_level_five(char *problem, int number_correct[10], int number_incorrect
       correct_answer = solve_problem(problem);
 
       printf("Enter your answer: ");
-      scanf("%lf", &user_answer);
+      scanf("%d", &user_answer);
 
       //Checks answer; updates scoring
       if (user_answer == correct_answer)
@@ -523,7 +523,7 @@ void play_level_five(char *problem, int number_correct[10], int number_incorrect
       }
       else if (user_answer != correct_answer)
       {
-        printf("Sorry! The answer was %.3lf...\n", correct_answer);
+        printf("Sorry! The answer was %d...\n", correct_answer);
         number_incorrect[LEVEL_FIVE] += 1;
         number_of_problems += 1;
         system( "read -n 1 -s -p \"Press any key to continue...\"" );
@@ -545,7 +545,7 @@ void play_level_five(char *problem, int number_correct[10], int number_incorrect
       generate_level_five_problem(problem, MEDIUM);
       correct_answer = solve_problem(problem);
       printf("Enter your answer: ");
-      scanf("%lf", &user_answer);
+      scanf("%d", &user_answer);
 
       //Checks answer; updates scoring
       if (user_answer == correct_answer)
@@ -558,7 +558,7 @@ void play_level_five(char *problem, int number_correct[10], int number_incorrect
       }
       else if (user_answer != correct_answer)
       {
-        printf("Sorry! The answer was %.3lf...\n", correct_answer);
+        printf("Sorry! The answer was %d...\n", correct_answer);
         number_incorrect[LEVEL_FIVE] += 1;
         number_of_problems += 1;
         system( "read -n 1 -s -p \"Press any key to continue...\"" );
@@ -580,7 +580,7 @@ void play_level_five(char *problem, int number_correct[10], int number_incorrect
       generate_level_five_problem(problem, HARD);
       correct_answer = solve_problem(problem);
       printf("Enter your answer: ");
-      scanf("%lf", &user_answer);
+      scanf("%d", &user_answer);
 
       //Checks answer; updates scoring
       if (user_answer == correct_answer)
@@ -593,7 +593,7 @@ void play_level_five(char *problem, int number_correct[10], int number_incorrect
       }
       else if (user_answer != correct_answer)
       {
-        printf("Sorry! The answer was %.3lf...\n", correct_answer);
+        printf("Sorry! The answer was %d...\n", correct_answer);
         number_incorrect[LEVEL_FIVE] += 1;
         number_of_problems += 1;
         system( "read -n 1 -s -p \"Press any key to continue...\"" );
@@ -707,7 +707,7 @@ int char_compare(char c1, char c2)
   }
 }
 
-double solve_problem(char *problem)
+int solve_problem(char *problem)
 {
   char last_operator = '\0';
   char new_lhs[50] = { '\0' };
@@ -720,12 +720,12 @@ double solve_problem(char *problem)
     if (!char_compare(last_operator, '+'))
     {
       my_strtok(problem, '+', new_lhs, new_rhs);
-      return solve_problem(new_lhs) + solve_problem(new_rhs);
+      return (int) solve_problem(new_lhs) + (int) solve_problem(new_rhs);
     }
     if (!char_compare(last_operator, '-'))
     {
       my_strtok(problem, '-', new_lhs, new_rhs);
-      return solve_problem(new_lhs) - solve_problem(new_rhs);
+      return (int) solve_problem(new_lhs) - (int) solve_problem(new_rhs);
     }
 
   }
@@ -737,16 +737,16 @@ double solve_problem(char *problem)
     if (!char_compare(last_operator, '*'))
     {
       my_strtok(problem, '*', new_lhs, new_rhs);
-      return solve_problem(new_lhs) * solve_problem(new_rhs);
+      return (int) solve_problem(new_lhs) * (int) solve_problem(new_rhs);
     }
     if (!char_compare(last_operator, '/'))
     {
       my_strtok(problem, '/', new_lhs, new_rhs);
-      return solve_problem(new_lhs) / solve_problem(new_rhs);
+      return (int) solve_problem(new_lhs) / (int) solve_problem(new_rhs);
     }
 
   }
-  return atoi(problem);
+  return (int) atoi(problem);
 }
 
 //Function that calculates and displays endgame stats
@@ -758,18 +758,28 @@ void calculate_and_display_stats(int number_correct[6], int number_incorrect[6],
   for (int i=LEVEL_ONE; i<=LEVEL_FIVE; i++)
   {
 
-    //Calculates and prints stats for one level
+    //Calculates and prints stats for one level to the console
     printf("LEVEL %d:\n", i);
     printf("Total correct: %d\n", number_correct[i]);
     printf("Total incorrect: %d\n", number_incorrect[i]);
-    percent_correct = (double)number_correct[i] / 10.0; //Number of problems per level
-    printf("Percent correct: %.2lf\n", percent_correct * 100);
     total_correct += number_correct[i];
     total_incorrect += number_incorrect[i];
-    total += 10; //Number of problems per level
+    total += number_correct[i] + number_incorrect[i];
+
+    //Calculates and prints stats for one level to the outfile
+    fprintf(outfile, "LEVEL %d:\n", i);
+    fprintf(outfile, "Total correct: %d\n", number_correct[i]);
+    fprintf(outfile, "Total incorrect: %d\n", number_incorrect[i]);
+
   }
+  //Prints total stats to the terminal
   printf("\nTotal answered correctly: %.2lf\n", total_correct);
   printf("Total answered incorrectly: %.2lf\n", total_incorrect);
-  printf("Total percent answered correctly: %.2lf\n", total_incorrect / total * 100);
+  printf("Total percent answered correctly: %.2lf percent\n", total_correct / total * 100);
+
+  //Prints total stats to the outfile
+  fprintf(outfile, "\nTotal answered correctly: %.2lf\n", total_correct);
+  fprintf(outfile, "Total answered incorrectly: %.2lf\n", total_incorrect);
+  fprintf(outfile, "Total percent answered correctly: %.2lf percent\n", total_correct / total * 100);
 
 }

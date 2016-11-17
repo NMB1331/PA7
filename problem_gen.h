@@ -285,7 +285,7 @@ int char_compare(char c1, char c2);
 * Preconditions: None                                       *
 * Postconditions: None                                      *
 *************************************************************/
-double solve_problem(char *problem);
+int solve_problem(char *problem);
 
 /*************************************************************
 * Function: calculate_and_display_stats                     *
